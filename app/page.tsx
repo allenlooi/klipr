@@ -36,14 +36,16 @@ const demoResult: MediaResult = {
 };
 
 const platformMap = [
+  ["youtube.com", "YouTube"],
+  ["youtu.be", "YouTube"],
   ["tiktok.com", "TikTok"],
   ["instagram.com", "Instagram"],
   ["facebook.com", "Facebook"],
   ["fb.watch", "Facebook"],
   ["twitter.com", "X"],
   ["x.com", "X"],
-  ["xiaohongshu.com", "XHS"],
-  ["xhslink.com", "XHS"],
+  ["xiaohongshu.com", "Xiaohongshu"],
+  ["xhslink.com", "Xiaohongshu"],
   ["threads.net", "Threads"],
   ["reddit.com", "Reddit"],
   ["pinterest.com", "Pinterest"],
@@ -88,9 +90,9 @@ export default function HomePage() {
           <Sparkles size={15} />
           One link. Whatever you need.
         </div>
-        <h1>Paste any social link.<br />Get what you need.</h1>
+        <h1>Paste any link.<br />Get what you need.</h1>
         <p className="hero-copy">
-          Download public videos, images, thumbnails and audio. Or turn any 20 seconds into a GIF.
+          Download public videos, images, thumbnails and audio from supported platforms.
         </p>
 
         <div className="download-card">
@@ -103,7 +105,7 @@ export default function HomePage() {
                   setUrl(e.target.value);
                   if (status === "ready") setStatus("idle");
                 }}
-                placeholder="Paste a TikTok, Instagram, X, Facebook or XHS link"
+                placeholder="Paste a YouTube, TikTok, Instagram, X, Facebook or Xiaohongshu link"
                 onKeyDown={(e) => e.key === "Enter" && processLink()}
               />
               {url && <span className="detected-pill">{detected}</span>}
@@ -114,17 +116,14 @@ export default function HomePage() {
             </button>
           </div>
           <div className="supported-inline">
+            <span>YouTube</span><i />
             <span>TikTok</span><i />
             <span>Instagram</span><i />
             <span>Facebook</span><i />
             <span>X</span><i />
-            <span>XHS</span><i />
+            <span>Xiaohongshu</span><i />
             <span>and more</span>
           </div>
-        </div>
-
-        <div className="ad-placeholder hero-ad">
-          <span>Ad space</span>
         </div>
       </section>
 
@@ -214,10 +213,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-
-          <div className="ad-placeholder result-ad">
-            <span>Ad space</span>
-          </div>
         </section>
       )}
 
@@ -269,7 +264,7 @@ export default function HomePage() {
         <div className="section-kicker">One place for your links</div>
         <h2>Made to work across social.</h2>
         <div className="platform-grid">
-          {["TikTok", "Instagram", "Facebook", "X", "XHS", "Threads", "Reddit", "Pinterest"].map((name) => (
+          {["YouTube", "TikTok", "Instagram", "Facebook", "X", "Xiaohongshu", "Threads", "Reddit", "Pinterest"].map((name) => (
             <div key={name}>{name}<ChevronRight size={16} /></div>
           ))}
         </div>
@@ -291,6 +286,29 @@ export default function HomePage() {
         ))}
       </section>
 
+
+      <section className="blog shell">
+        <div className="section-kicker">From the blog</div>
+        <div className="blog-heading">
+          <h2>Useful guides for saving and repurposing social content.</h2>
+          <a href="/blog">View all articles <ChevronRight size={16} /></a>
+        </div>
+        <div className="blog-grid">
+          {[
+            ["How to download social videos without losing quality", "A simple guide to getting the best available file from public social links."],
+            ["How to turn a video clip into a GIF", "Everything you need to know before converting a short clip into a lightweight GIF."],
+            ["Video, audio or thumbnail: which format should you save?", "Choose the right output for references, edits, presentations and social planning."],
+          ].map(([title, text]) => (
+            <article key={title}>
+              <span>Guide</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+              <a href="/blog">Read article <ChevronRight size={15} /></a>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <footer className="footer shell">
         <div className="brand footer-brand">
           <span className="brand-mark">K</span>
@@ -298,10 +316,10 @@ export default function HomePage() {
         </div>
         <p>Paste it. Klip it.</p>
         <div className="footer-links">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Copyright</a>
-          <a href="#">Contact</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/copyright">Copyright</a>
+          <a href="/blog">Blog</a>
         </div>
         <small>© 2026 Klipr. Not affiliated with any supported social platform.</small>
       </footer>
